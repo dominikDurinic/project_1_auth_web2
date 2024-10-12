@@ -1,0 +1,225 @@
+body{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    min-height: 100vh;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #35745F;
+    width: 100%;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #35745F;
+    width: 100%;
+}
+
+footer > p{
+    padding: 0px 10px;
+    color: white;
+}
+
+.header-title{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-shadow: 1px 2px #788d6b;
+    color: white;
+}
+
+.navBar{
+    display: flex;
+    justify-content: space-evenly;
+    width: 250px;
+    font-weight: bold;
+}
+
+.navBar > a{
+    color: white;
+}
+
+.navBar > a:hover{
+    text-decoration: underline;
+}
+
+.selectedNav{
+    text-decoration: underline;
+}
+
+.titleImg{
+    display: flex;
+    align-items: center;
+}
+
+.titleImg > img{
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+}
+
+.btnStart{
+    padding: 20px;
+}
+
+.btn-start{
+    width: 400px;
+    padding: 0px 20px;
+    background-color: #35745F;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.btn-start:hover{
+    background-color: #788d6b;
+}
+
+.btn-num-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    background-image: url("../public/images/ticket-back.png");
+    background-size: cover;
+    padding: 50px 0px;
+    color: white;
+    text-shadow: 1px 2px #788d6b;
+}
+
+.numTicket-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.numTicket-div{
+    border: 4px solid #35745F;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.numTicket-div > h1{
+    margin: 0px;
+}
+
+.ticketForm-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    gap: 30px;
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 2px #35745F;
+    background-color: whitesmoke;
+}
+
+.ticketDetail-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 30px;
+    width: 1000px;
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 2px #35745F;
+    background-color: whitesmoke;
+}
+
+.ticketDetail-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 500px;
+}
+
+.ticketDetail-div > h2 > span{
+    color: red;
+}
+
+.ticketDetail-div > p > span{
+    font-weight: bold;
+}
+
+.ticketDetail-container > div > img{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: black;
+    padding: 10px;
+    
+}
+
+.ticketForm, .ticketDetail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+}
+
+.ticketForm > div, .ticketDetail > div{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ticketForm > div > input, .ticketDetail > div > input{
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px 5px;
+    font-size: medium;
+    border-color: #35745F;
+}
+
+.ticketForm > div > label, .ticketDetail > div > label{
+    font-weight: bold;
+}
+
+.btnNew{
+    padding: 20px;
+}
+
+.btn-new{
+    padding: 0px 20px;
+    background-color: #35745F;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.btn-new:hover{
+    background-color: #788d6b;
+}

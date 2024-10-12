@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="icon" href="../public/images/topIcon.png" type="image/icon">
+    <title>eTicket</title>
+</head>
+<body>
+    <header>
+        <a href="/">
+            <div class="titleImg">
+                <img src="../public/images/ticket-icon.png">
+                <h1 class="header-title">eTicket</h1>
+            </div>
+        </a>
+        <div class="navBar">
+            <a href="/" ><div class="selectedNav">Home</div></a>
+            <a href="/form"><div>New ticket</div></a>
+            <a href="/ticket-details"><div>LogIn</div></a>
+        </div>
+    </header>
+    <main>
+        <div class="ticketDetail-container">
+            <div>
+                <img src="../public/images/ticket-icon.png">
+            </div>
+            <div class="ticketDetail-div">
+                <h2>Details for ticket: <span><%=id_ticket%></span></h2>
+                <form class="ticketDetail">
+                    <div>
+                        <label for="vatin">OIB of a person or company</label>
+                        <input type="text" id="vatin" value="<%=oib%>" disabled>
+                    </div>
+                    <div>
+                        <label for="firstName">First name</label>
+                        <input type="text" id="firstName" value="<%=firstName%>" disabled>
+                    </div>
+                    <div>
+                        <label for="lastName">Last name</label>
+                        <input type="text" id="lastName" value="<%=lastName%>" disabled>
+                    </div>   
+                </form>
+                <p>Ticket generated at <span><%=time%></span></p>
+            </div>
+            
+        </div>
+    </main>
+    <footer>
+        <p>Dominik Đurinić</p>
+        <div class="titleImg">
+            <img src="../public/images/ticket-icon.png">
+            <h1 class="header-title">eTicket</h1>
+        </div>
+        <p>Zagreb, 2024</p>
+    </footer>
+</body>
+</html>

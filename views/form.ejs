@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="icon" href="../public/images/topIcon.png" type="image/icon">
+    <title>eTicket</title>
+</head>
+<body>
+    <header>
+        <a href="/">
+            <div class="titleImg">
+                <img src="../public/images/ticket-icon.png">
+                <h1 class="header-title">eTicket</h1>
+            </div>
+        </a>
+        <div class="navBar">
+            <a href="/" ><div>Home</div></a>
+            <a href="/form"><div class="selectedNav">New ticket</div></a>
+            <a href="/ticket-details"><div>LogIn</div></a>
+        </div>
+    </header>
+    <main>
+        <div class="ticketForm-container">
+            <h2>New ticket</h2>
+            <p>To generate a new ticket, please complete this form.</p>
+            <form class="ticketForm">
+                <div>
+                    <label for="vatin">OIB of a person or company</label>
+                    <input type="text" id="vatin" placeholder="Enter OIB of a person or company">
+                </div>
+                <div>
+                    <label for="firstName">First name</label>
+                    <input type="text" id="firstName" placeholder="Enter your first name">
+                </div>
+                <div>
+                    <label for="lastName">Last name</label>
+                    <input type="text" id="lastName" placeholder="Enter your last name">
+                </div>   
+            </form>
+            <a href="/" class="btnNew"><div class="btn-new"><p>Generate</p></div></a>
+        </div>
+    </main>
+    <footer>
+        <p>Dominik Đurinić</p>
+        <div class="titleImg">
+            <img src="../public/images/ticket-icon.png">
+            <h1 class="header-title">eTicket</h1>
+        </div>
+        <p>Zagreb, 2024</p>
+    </footer>
+</body>
+</html>
