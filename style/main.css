@@ -257,21 +257,27 @@ footer > p{
     font-weight: bold;
 }
 
-.btnNew{
-    padding: 20px;
-}
 
 .btn-new{
+    margin-top: 20px;
+    width: 200px;
     padding: 0px 20px;
     background-color: #35745F;
     color: white;
     border-radius: 10px;
+    border: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
     font-weight: bold;
+    font-size: medium;
 }
 
 .btn-new:hover{
     background-color: #788d6b;
+}
+
+.errorMsg{
+    flex-wrap: wrap;
+    text-align: center;
 }

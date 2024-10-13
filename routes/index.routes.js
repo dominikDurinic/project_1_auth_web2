@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var db = require("../db/index");
+const express = require("express");
+const router = express.Router();
+const db = require("../db/index");
 
 router.get("/", async function (req, res) {
   const num_ticket = await db.query("SELECT COUNT(*) FROM ticketList");

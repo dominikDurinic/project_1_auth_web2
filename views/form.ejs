@@ -28,21 +28,22 @@
                 <h2>New ticket</h2>
             </div>
             <p>To generate a new ticket, please complete this form.</p>
-            <form class="ticketForm">
+            <form class="ticketForm" action="/form" method="post">
                 <div>
                     <label for="vatin">OIB of a person or company</label>
-                    <input type="text" id="vatin" placeholder="Enter OIB of a person or company">
+                    <input type="text" id="vatin" placeholder="Enter OIB of a person or company" name="vatin">
                 </div>
                 <div>
                     <label for="firstName">First name</label>
-                    <input type="text" id="firstName" placeholder="Enter your first name">
+                    <input type="text" id="firstName" placeholder="Enter your first name" name="firstName">
                 </div>
                 <div>
                     <label for="lastName">Last name</label>
-                    <input type="text" id="lastName" placeholder="Enter your last name">
+                    <input type="text" id="lastName" placeholder="Enter your last name" name="lastName">
                 </div>   
+                <button class="btn-new btnNew" type="submit"><p>Generate</p></button>
             </form>
-            <a href="/" class="btnNew"><div class="btn-new"><p>Generate</p></div></a>
+            
         </div>
     </main>
     <footer>
