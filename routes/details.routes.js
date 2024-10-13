@@ -1,18 +1,43 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const db = require("../db/index");
+const uuidCheck = require("uuid");
+const qrCode = require("qrcode");
 
 router.get("/", function (req, res) {
   res.redirect("/");
 });
 
-router.get("/:id", function (req, res) {
-  res.render("details", {
-    id_ticket: req.params.id,
-    oib: "231646464",
-    firstName: "Dominik",
-    lastName: "Đurinić",
-    time: "12.10.2024. 23:03",
-  });
+router.get("/:id", async function (req, res) {
+  const id = req.params.id;
+
+  if (uuidCheck.validate(id)) {
+    //test if uuid is valid
+    const ticket = await db.query("SELECT * FROM ticketList WHERE id = $1", [
+      id,
+    ]);
+
+    if (ticket.rowCount > 0) {
+      const QRCode = await qrCode.toDataURL(
+        "http://localhost:8000/ticket-details/" + id
+      );
+
+      res.render("details", {
+        id_ticket: id,
+        oib: ticket.rows[0].vatin,
+        firstName: ticket.rows[0].firstname,
+        lastName: ticket.rows[0].lastname,
+        time: new Date(ticket.rows[0].time).toLocaleString(),
+        qrcode: QRCode,
+      });
+    } else {
+      //if it do not exist in db
+      res.redirect("/");
+    }
+  } else {
+    // if uuid is invalid
+    res.redirect("/");
+  }
 });
 
 module.exports = router;

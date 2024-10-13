@@ -16,7 +16,7 @@
             </div>
         </a>
         <div class="navBar">
-            <a href="/" ><div class="selectedNav">Home</div></a>
+            <a href="/" ><div>Home</div></a>
             <a href="/form"><div>New ticket</div></a>
             <a href="/ticket-details"><div>LogIn</div></a>
         </div>
@@ -24,10 +24,11 @@
     <main>
         <div class="ticketDetail-container">
             <div>
-                <img src="../public/images/ticket-icon.png">
+                <img src="<%=qrcode%>" alt="QR code" width="300px">
             </div>
             <div class="ticketDetail-div">
-                <h2>Details for ticket: <span><%=id_ticket%></span></h2>
+                <h2>Details for ticket:</h2>
+                <p class="ticketId-p">UUID: <%=id_ticket%></p>
                 <form class="ticketDetail">
                     <div>
                         <label for="vatin">OIB of a person or company</label>
