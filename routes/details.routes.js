@@ -18,17 +18,12 @@ router.get("/:id", async function (req, res) {
     ]);
 
     if (ticket.rowCount > 0) {
-      const QRCode = await qrCode.toDataURL(
-        "http://localhost:8000/ticket-details/" + id
-      );
-
       res.render("details", {
         id_ticket: id,
         oib: ticket.rows[0].vatin,
         firstName: ticket.rows[0].firstname,
         lastName: ticket.rows[0].lastname,
         time: new Date(ticket.rows[0].time).toLocaleString(),
-        qrcode: QRCode,
       });
     } else {
       //if it do not exist in db

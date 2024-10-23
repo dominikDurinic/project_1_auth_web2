@@ -10,10 +10,12 @@
   "author": "Dominik Đurinić",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "node-fetch": "^3.3.2",
     "nodemon": "^3.1.7",
     "pg": "^8.13.0",
     "qrcode": "^1.5.4",

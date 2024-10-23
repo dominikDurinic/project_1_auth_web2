@@ -281,3 +281,7 @@ footer > p{
     flex-wrap: wrap;
     text-align: center;
 }
+
+.uuid-text{
+    text-align: center;
+}
