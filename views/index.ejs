@@ -16,9 +16,13 @@
             </div>
         </a>
         <div class="navBar">
-            <a href="/" ><div class="selectedNav">Home</div></a>
+            <a href="/" class="selectedNav"><div>Home</div></a>
             <a href="/form"><div>New ticket</div></a>
-            <a href="/ticket-details"><div>Log In</div></a>
+            <%if(!isAuthenticated) {%>
+                <div class="not-logged-user"><a href="/login"><div>Log In</div></a></div>
+            <%} else { %>
+                <a href="/logout" class="logged-user"><div class="user-div"><%=user.name%><img class="userLogo" src="../public/images/user.png" alt="logoUser"></div></a>
+            <% } %>
         </div>
     </header>
     <main>

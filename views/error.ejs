@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="icon" href="../public/images/topIcon.png" type="image/icon">
-    <title>400 - eTicket</title>
+    <title><%=status%> - eTicket</title>
 </head>
 <body>
     <header>
@@ -16,14 +16,18 @@
             </div>
         </a>
         <div class="navBar">
-            <a href="/" ><div class="selectedNav">Home</div></a>
+            <a href="/"><div>Home</div></a>
             <a href="/form"><div>New ticket</div></a>
-            <a href="/ticket-details"><div>Log In</div></a>
+            <%if(!isAuthenticated) {%>
+                <div class="not-logged-user"><a href="/login"><div>Log In</div></a></div>
+            <%} else { %>
+                <a href="/logout" class="logged-user"><div class="user-div"><%=user.name%><img class="userLogo" src="../public/images/user.png" alt="logoUser"></div></a>
+            <% } %>
         </div>
     </header>
     <main class="errorMsg">
         <img src="../public/images/error.png" alt="error" width="50px">
-        <h1>400 - <%=message%></h1>
+        <h1><%=status%> - <%=message%></h1>
         <p><%=msg2%></p>
         <a href="/form" class="btnStart"><div class="btn-start"><h3>Back to form</h3></div></a>
     </main>

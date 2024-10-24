@@ -1,15 +1,26 @@
 const express = require("express");
 const qrServer = express();
-const { v4: uuidv4 } = require("uuid");
 const qrCode = require("qrcode");
-const axios = require("axios");
+const bp = require("body-parser");
+const { auth } = require("express-oauth2-jwt-bearer");
 
-qrServer.get("/", async function (req, res) {
-  const uuid_ticket = uuidv4();
+qrServer.use(bp.json());
+
+const jwtCheck = auth({
+  //jwt - JSON Web Token
+  audience: "http://localhost:8080/",
+  issuerBaseURL: "https://dev-n4txjn5xci08w7xh.us.auth0.com/",
+  tokenSigningAlg: "RS256",
+});
+
+qrServer.use(jwtCheck);
+
+qrServer.post("/", async function (req, res) {
+  const data = req.body;
   const QRCode = await qrCode.toDataURL(
-    "http://localhost:8000/ticket-details/" + uuid_ticket
+    "http://localhost:8000/ticket-details/" + data.uuid_ticket
   );
-  res.status(200).json({ uuid_ticket: uuid_ticket, qrcode: QRCode });
+  res.status(200).json({ qrcode: QRCode });
 });
 
 module.exports = qrServer;

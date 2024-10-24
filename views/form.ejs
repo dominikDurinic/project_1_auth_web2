@@ -16,12 +16,17 @@
             </div>
         </a>
         <div class="navBar">
-            <a href="/" ><div>Home</div></a>
-            <a href="/form"><div class="selectedNav">New ticket</div></a>
-            <a href="/ticket-details"><div>Log In</div></a>
+            <a href="/"><div>Home</div></a>
+            <a href="/form" class="selectedNav"><div>New ticket</div></a>
+            <%if(!isAuthenticated) {%>
+                <div class="not-logged-user"><a href="/login"><div>Log In</div></a></div>
+            <%} else { %>
+                <a href="/logout" class="logged-user"><div class="user-div"><%=user.name%><img class="userLogo" src="../public/images/user.png" alt="logoUser"></div></a>
+            <% } %>
         </div>
     </header>
     <main>
+        <%if(image==null){%>
         <div class="ticketForm-container">
             <div>
                 <img src="../public/images/new.png" alt="QR code" width="100px">
@@ -43,8 +48,16 @@
                 </div>   
                 <button class="btn-new btnNew" type="submit"><p>Generate</p></button>
             </form>
-            
         </div>
+        <%} else {%>
+            <div class="ticketForm-container">
+                <div>
+                    <h2>Here is your ticket ;)</h2>
+                    <img src="<%=image%>" alt="QR code" width="300px">
+                    <h3 class="uuid-text">UUID: <%=id_ticket%></h3>
+                </div>
+            </div>
+        <%}%>
     </main>
     <footer>
         <p>Dominik Đurinić</p>
