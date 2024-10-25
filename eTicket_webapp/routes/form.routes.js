@@ -4,6 +4,9 @@ const db = require("../db/index");
 const bp = require("body-parser");
 const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 router.get("/", function (req, res) {
   res.render("form", {
@@ -21,12 +24,11 @@ async function getAccessToken() {
   let data;
   await axios({
     method: "POST",
-    url: "https://dev-n4txjn5xci08w7xh.us.auth0.com/oauth/token",
+    url: process.env.ISSUER_BASE_URL + "/oauth/token",
     headers: { "content-type": "application/json" },
     data: {
-      client_id: "Gqu8bwtdb1tt25fpYTOI93rxYpB369RA",
-      client_secret:
-        "SCYOlTw-JtqpeYwsqWMQioNvVEbC_Eoz-04_dXwTet-xlJY4A8syAbZw9KLEfa8L",
+      client_id: process.env.CLIENT_ID_1,
+      client_secret: process.env.CLIENT_SECRET,
       audience: "http://localhost:8080/",
       grant_type: "client_credentials",
     },

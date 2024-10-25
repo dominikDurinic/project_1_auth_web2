@@ -4,6 +4,7 @@ const db = require("../db/index");
 
 router.get("/", async function (req, res) {
   if (req.cookies.last_uuid) {
+    //after log in redirect to last page
     const ticket_uuid = req.cookies.last_uuid;
     res.redirect("/ticket-details/" + ticket_uuid);
   } else {

@@ -30,6 +30,25 @@
         border: none !important;
         box-shadow: none !important;
     }
+
+    header{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #35745F;
+        width: 100%;
+        height: fit-content !important;
+        padding-bottom: 10px;
+    }
+
+    .navBar{
+        display: flex;
+        align-items: center;
+        height: 70px !important;
+        width: 100%;
+        font-weight: bold;
+    }
 }
 
 body{
@@ -105,6 +124,10 @@ footer > p{
     border-bottom: 3px solid white;
 }
 
+.navBar-pad{
+    padding-right: 10px;
+}
+
 .selectedNav{
     border-bottom: 3px solid white !important;
 }
@@ -169,11 +192,13 @@ footer > p{
 
 .numTicket-div{
     border: 4px solid #35745F;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     padding: 10px 20px;
     font-weight: bold;
-    color: red;
+    background-color: #35745F;
+    color: white;
 }
 
 .numTicket-div > h1{
@@ -315,13 +340,27 @@ footer > p{
     background-color: #19372d;
     border-bottom: 3px solid #19372d !important;   
     padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logged-user:hover{
+    background-color: #405d54;
+    border-bottom: 3px solid #405d54 !important; 
+}
+
+.logged-user > p{
+    font-size: small;
+    font-weight: normal;
+    margin: 0px;
+    padding: 5px 0px;
 }
 
 .not-logged-user{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right:10px; 
 }
 
 a:visited{

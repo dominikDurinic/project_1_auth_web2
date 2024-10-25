@@ -15,13 +15,13 @@
                 <h1 class="header-title">eTicket</h1>
             </div>
         </a>
-        <div class="navBar">
+        <div class="navBar <%= !isAuthenticated ? 'navBar-pad':''%>">
             <a href="/" class="selectedNav"><div>Home</div></a>
             <a href="/form"><div>New ticket</div></a>
             <%if(!isAuthenticated) {%>
-                <div class="not-logged-user"><a href="/login"><div>Log In</div></a></div>
+                <a href="/login"><div class="not-logged-user">Log In</div></a>
             <%} else { %>
-                <a href="/logout" class="logged-user"><div class="user-div"><%=user.name%><img class="userLogo" src="../public/images/user.png" alt="logoUser"></div></a>
+                <a href="/logout" class="logged-user"><div class="user-div"><div><%=user.name%></div><img class="userLogo" src="../public/images/user.png" alt="logoUser"></div><p>Log Out</p></a>
             <% } %>
         </div>
     </header>

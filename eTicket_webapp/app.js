@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
-const service = require("./qrServer");
-const port = 8000;
-const port2 = 8080;
 const cookieParser = require("cookie-parser");
-
 const { auth } = require("express-openid-connect");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 //auth0
 const config = {
@@ -13,8 +12,8 @@ const config = {
   auth0Logout: true,
   secret: "a long, randomly-generated string stored in env",
   baseURL: "http://localhost:8000",
-  clientID: "Dz8l3J3zJgWcP3K2jjEDEBI4rbYy3MTg",
-  issuerBaseURL: "https://dev-n4txjn5xci08w7xh.us.auth0.com",
+  clientID: process.env.CLIENT_ID_2,
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
 
 app.use(auth(config));
@@ -30,5 +29,4 @@ app.set("view engine", "ejs");
 app.use("/style", express.static(__dirname + "/style"));
 app.use("/public/images", express.static(__dirname + "/public/images"));
 
-app.listen(port);
-service.listen(port2);
+app.listen(parseInt(process.env.PORT));

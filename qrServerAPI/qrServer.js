@@ -3,6 +3,9 @@ const qrServer = express();
 const qrCode = require("qrcode");
 const bp = require("body-parser");
 const { auth } = require("express-oauth2-jwt-bearer");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 qrServer.use(bp.json());
 
@@ -23,4 +26,4 @@ qrServer.post("/", async function (req, res) {
   res.status(200).json({ qrcode: QRCode });
 });
 
-module.exports = qrServer;
+qrServer.listen(parseInt(process.env.PORT));
