@@ -27,7 +27,7 @@ async function getAccessToken() {
     data: {
       client_id: process.env.CLIENT_ID_1,
       client_secret: process.env.CLIENT_SECRET,
-      audience: "https://project-1-auth-web2.onrender.com",
+      audience: "https://project-1-auth-web2.onrender.com/",
       grant_type: "client_credentials",
     },
   })
@@ -43,7 +43,7 @@ async function get_data(vatin, firstName, lastName, token) {
   let data;
   await axios({
     method: "POST",
-    url: "https://project-1-auth-web2.onrender.com",
+    url: "https://project-1-auth-web2.onrender.com/",
     data: { vatin: vatin, firstName: firstName, lastName: lastName },
     headers: {
       "Content-Type": "application/json",
