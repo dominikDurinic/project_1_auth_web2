@@ -59,7 +59,7 @@ qrServer.post("/", async function (req, res) {
 
       //generate QR Code for ticket with uuid_ticket
       const QRCode = await qrCode.toDataURL(
-        "http://localhost:8000/ticket-details/" + uuid_ticket
+        "https://eticket-bzml.onrender.com/ticket-details/" + uuid_ticket
       );
       res.status(200).json({ qrcode: QRCode, uuid_ticket: uuid_ticket });
     } else {
