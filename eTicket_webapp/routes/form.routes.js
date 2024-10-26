@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db/index");
 const bp = require("body-parser");
 const axios = require("axios");
-const { v4: uuidv4 } = require("uuid");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -29,7 +27,7 @@ async function getAccessToken() {
     data: {
       client_id: process.env.CLIENT_ID_1,
       client_secret: process.env.CLIENT_SECRET,
-      audience: "http://localhost:8080/",
+      audience: "http://127.0.0.1:8080/",
       grant_type: "client_credentials",
     },
   })
@@ -40,13 +38,13 @@ async function getAccessToken() {
   return data;
 }
 
-async function get_data(uuid_ticket, token) {
-  //get qrcode for generated uuid from second server
+async function get_data(vatin, firstName, lastName, token) {
+  //generate ticket from second server/api
   let data;
   await axios({
-    method: "post",
-    url: "http://localhost:8080/",
-    data: { uuid_ticket: uuid_ticket },
+    method: "POST",
+    url: "http://127.0.0.1:8080/",
+    data: { vatin: vatin, firstName: firstName, lastName: lastName },
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token.access_token,
@@ -66,8 +64,7 @@ router.post("/", async function (req, res) {
     req.body.firstName == "" ||
     req.body.lastName == ""
   ) {
-    res.status(400);
-    res.render("error", {
+    res.status(400).render("error", {
       status: "400",
       message: "Not all input fields completed.",
       msg2: "Please complete all input fields.",
@@ -75,35 +72,27 @@ router.post("/", async function (req, res) {
       user: req.oidc.user,
     });
   } else {
-    const vatin_count = await db.query(
-      "SELECT COUNT(*) FROM ticketList WHERE vatin=$1",
-      [req.body.vatin]
-    );
+    //get access_token for API qrServer
+    let access_token = await getAccessToken();
 
-    if (vatin_count.rows[0].count < 3) {
-      //one OIB can generate max 3 tickets
-      const uuid_ticket = uuidv4();
-
-      //get access_token for API qrServer
-      let access_token = await getAccessToken();
-
-      //send token to API to authorize
-      let data = await get_data(uuid_ticket, access_token);
-
-      const newTicket = await db.query(
-        "INSERT INTO ticketList VALUES ($1, $2, $3, $4, localtimestamp)",
-        [uuid_ticket, req.body.vatin, req.body.firstName, req.body.lastName]
+    //send token to API to authorize
+    try {
+      let data = await get_data(
+        req.body.vatin,
+        req.body.firstName,
+        req.body.lastName,
+        access_token
       );
 
       res.render("form", {
         image: data.qrcode,
-        id_ticket: uuid_ticket,
+        id_ticket: data.uuid_ticket,
         isAuthenticated: req.oidc.isAuthenticated(),
         user: req.oidc.user,
       });
-    } else {
-      res.status(400);
-      res.render("error", {
+    } catch (err) {
+      console.log(err);
+      res.status(400).render("error", {
         status: "400",
         message: "There are already 3 tickets with OIB: " + req.body.vatin,
         msg2: "Please choose different OIB.",

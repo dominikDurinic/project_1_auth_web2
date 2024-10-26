@@ -10,7 +10,7 @@ dotenv.config();
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: "a long, randomly-generated string stored in env",
+  secret: process.env.SECRET,
   baseURL: "http://localhost:8000",
   clientID: process.env.CLIENT_ID_2,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
