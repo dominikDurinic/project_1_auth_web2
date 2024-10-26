@@ -72,6 +72,8 @@ qrServer.post("/", async function (req, res) {
 });
 
 //endpoint for generating qrCode for ticket
-const hostname = "127.0.0.1";
-const port = parseInt(process.env.PORT) || 8080;
+const hostname = "0.0.0.0";
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port =
+  externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 8080;
 qrServer.listen(port, hostname);
