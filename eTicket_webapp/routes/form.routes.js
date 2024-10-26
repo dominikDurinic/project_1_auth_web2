@@ -6,10 +6,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const externalUrl = process.env.RENDER_EXTERNAL_URL;
-const port =
-  externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 8000;
-
 router.get("/", function (req, res) {
   res.render("form", {
     image: null,
@@ -31,7 +27,7 @@ async function getAccessToken() {
     data: {
       client_id: process.env.CLIENT_ID_1,
       client_secret: process.env.CLIENT_SECRET,
-      audience: externalUrl || `https://localhost:${port}`,
+      audience: "https://project-1-auth-web2.onrender.com",
       grant_type: "client_credentials",
     },
   })
