@@ -1,15 +1,15 @@
-import express from "express";
+const express = require("express");
 const qrServer = express();
-import { toDataURL } from "qrcode";
-import { json } from "body-parser";
-import { query } from "./db/index";
-import { auth } from "express-oauth2-jwt-bearer";
-import { v4 as uuidv4 } from "uuid";
-import { config } from "dotenv";
+const qrCode = require("qrcode");
+const bp = require("body-parser");
+const db = require("./db/index");
+const { auth } = require("express-oauth2-jwt-bearer");
+const { v4: uuidv4 } = require("uuid");
+const dotenv = require("dotenv");
 
-config();
+dotenv.config();
 
-qrServer.use(json());
+qrServer.use(bp.json());
 
 const jwtCheck = auth({
   //jwt - JSON Web Token
@@ -42,7 +42,7 @@ qrServer.post("/", async function (req, res) {
       .status(400)
       .send({ status: "400", message: "Not all input fields completed." });
   } else {
-    const vatin_count = await query(
+    const vatin_count = await db.query(
       "SELECT COUNT(*) FROM ticketList WHERE vatin=$1",
       [req.body.vatin]
     );
@@ -52,13 +52,13 @@ qrServer.post("/", async function (req, res) {
       const uuid_ticket = uuidv4();
 
       //inserting form data in database
-      const newTicket = await query(
+      const newTicket = await db.query(
         "INSERT INTO ticketList VALUES ($1, $2, $3, $4, localtimestamp)",
         [uuid_ticket, req.body.vatin, req.body.firstName, req.body.lastName]
       );
 
       //generate QR Code for ticket with uuid_ticket
-      const QRCode = await toDataURL(
+      const QRCode = await qrCode.toDataURL(
         "http://localhost:8000/ticket-details/" + uuid_ticket
       );
       res.status(200).json({ qrcode: QRCode, uuid_ticket: uuid_ticket });
