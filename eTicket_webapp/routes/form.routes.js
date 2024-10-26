@@ -43,7 +43,7 @@ async function get_data(vatin, firstName, lastName, token) {
   let data;
   await axios({
     method: "POST",
-    url: externalUrl,
+    url: "https://project-1-auth-web2.onrender.com",
     data: { vatin: vatin, firstName: firstName, lastName: lastName },
     headers: {
       "Content-Type": "application/json",
