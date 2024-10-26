@@ -6,12 +6,16 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port =
+  externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 8000;
+
 //auth0
 const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
-  baseURL: "http://localhost:8000",
+  baseURL: externalUrl || `https://localhost:${port}`,
   clientID: process.env.CLIENT_ID_2,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
@@ -29,4 +33,9 @@ app.set("view engine", "ejs");
 app.use("/style", express.static(__dirname + "/style"));
 app.use("/public/images", express.static(__dirname + "/public/images"));
 
-app.listen(parseInt(process.env.PORT));
+if (externalUrl) {
+  const hostname = "0.0.0.0";
+  app.listen(port, hostname);
+} else {
+  app.listen(port);
+}
