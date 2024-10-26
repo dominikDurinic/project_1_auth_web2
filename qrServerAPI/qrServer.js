@@ -13,7 +13,7 @@ qrServer.use(bp.json());
 
 const jwtCheck = auth({
   //jwt - JSON Web Token
-  audience: "https://project-1-auth-web2.onrender.com/",
+  audience: "https://qrcode-api-90yr.onrender.com/",
   issuerBaseURL: "https://dev-n4txjn5xci08w7xh.us.auth0.com/",
   tokenSigningAlg: "RS256",
 });
