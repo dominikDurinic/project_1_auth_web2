@@ -27,7 +27,7 @@ async function getAccessToken() {
     data: {
       client_id: process.env.CLIENT_ID_1,
       client_secret: process.env.CLIENT_SECRET,
-      audience: "https://qrcode-api-90yr.onrender.com/",
+      audience: "https://qrcode-api-90yr.onrender.com",
       grant_type: "client_credentials",
     },
   })
@@ -43,7 +43,7 @@ async function get_data(vatin, firstName, lastName, token) {
   let data;
   await axios({
     method: "POST",
-    url: "https://qrcode-api-90yr.onrender.com/",
+    url: "https://qrcode-api-90yr.onrender.com",
     data: { vatin: vatin, firstName: firstName, lastName: lastName },
     headers: {
       "Content-Type": "application/json",
