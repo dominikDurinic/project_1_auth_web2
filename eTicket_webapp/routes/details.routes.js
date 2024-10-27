@@ -23,7 +23,9 @@ router.get("/:id", async function (req, res) {
           oib: ticket.rows[0].vatin,
           firstName: ticket.rows[0].firstname,
           lastName: ticket.rows[0].lastname,
-          time: new Date(ticket.rows[0].time).toLocaleString(),
+          time: new Date(ticket.rows[0].time).toLocaleString("hr-HR", {
+            timeZone: "UTC",
+          }),
           isAuthenticated: req.oidc.isAuthenticated(),
           user: req.oidc.user,
         });
