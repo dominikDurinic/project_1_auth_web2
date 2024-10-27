@@ -11,7 +11,7 @@ router.get("/", async function (req, res) {
     const num_ticket = await db.query("SELECT COUNT(*) FROM ticketList");
     res.render("index", {
       num_tickets: num_ticket.rows[0].count,
-      update: new Date().toLocaleString("hr-HR", { timeZone: "UTC" }),
+      update: new Date().toLocaleString("hr-HR", { timeZone: "Europe/Zagreb" }),
       isAuthenticated: req.oidc.isAuthenticated(),
       user: req.oidc.user,
     });
