@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../db/index");
 
 router.get("/", async function (req, res) {
-  if (req.cookies.last_uuid) {
+  if (req.cookies.last_uuid && req.oidc.isAuthenticated()) {
     //after log in redirect to last page
     const ticket_uuid = req.cookies.last_uuid;
     res.redirect("/ticket-details/" + ticket_uuid);
